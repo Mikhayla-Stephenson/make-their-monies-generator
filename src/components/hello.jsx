@@ -15,8 +15,9 @@ export default function Hello() {
   const toast = useToast()
 
   const [yearsWorked, setYearsWorked] = useState(0)
+  const [alerted, setAlerted] = useState(false)
 
-  const avgLifeSpan = 5
+  const avgLifeSpan = 83
   const lives = Math.floor(yearsWorked / avgLifeSpan)
   let livesArray = []
   for (let i = 0; i < lives; i++) {
@@ -44,7 +45,7 @@ export default function Hello() {
       <Heading
         as="h1"
         size="xl"
-        mb="1"
+        mb="3"
       >
         {chunks.map(({ match, text }) => {
           if (!match) return text
@@ -73,7 +74,7 @@ export default function Hello() {
       <Heading
         as="h2"
         size="md"
-        mb="5"
+        mb="10"
       >
         {next.map(({ match, text }) => {
           if (!match) return text
@@ -115,17 +116,18 @@ export default function Hello() {
           if (bars === 1 && !alerted) {
             toast({
               title: "You earned you first $100 million!",
-              description: "only " + numBars + " to go!",
-              status: "Success",
-              duration: 5000,
+              description: "Only " + numBars + " more bars to go!",
+              status: "success",
+              duration: 9000,
               isClosable: true,
             })
+            setAlerted(true)
           }
         }}
         bgColor="white"
         colorScheme="black"
         variant="outline"
-        my="4"
+        mt="7"
       >
         Work
       </Button>
