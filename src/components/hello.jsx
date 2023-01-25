@@ -21,7 +21,12 @@ export default function Hello() {
   const lives = Math.floor(yearsWorked / avgLifeSpan)
   let livesArray = []
   for (let i = 0; i < lives; i++) {
-    livesArray.push(<Icon as={FaSkull} />)
+    livesArray.push(
+      <Icon
+        mr="0.5"
+        as={FaSkull}
+      />
+    )
   }
   const billGatesMoney = 145757154000
   const averageAnnualIncome = 68250
@@ -41,11 +46,12 @@ export default function Hello() {
   })
 
   return (
-    <div>
+    <Box mt="12">
       <Heading
         as="h1"
         size="xl"
         mb="3"
+        fontFamily="NewYork"
       >
         {chunks.map(({ match, text }) => {
           if (!match) return text
@@ -75,6 +81,7 @@ export default function Hello() {
         as="h2"
         size="md"
         mb="10"
+        fontFamily="NewYork"
       >
         {next.map(({ match, text }) => {
           if (!match) return text
@@ -131,9 +138,6 @@ export default function Hello() {
       >
         Work
       </Button>
-      <p>
-        {bars} / {numBars}
-      </p>
       <Heading
         as="h3"
         size="xl"
@@ -146,17 +150,21 @@ export default function Hello() {
           px="2"
           py="1"
         >
-          ${currentMoney}
+          ${currentMoney.toLocaleString("en-US")}
         </Mark>
       </Heading>
+      <div style={{ textAlign: "right" }}>
+        {bars} / {numBars.toLocaleString("en-US")}
+      </div>
       <Progress
+        colorScheme="gray"
         value={
           ((currentMoney - bars * progressBarTotal) / progressBarTotal) * 100
         }
       />
       <div>{yearsWorked} years spent</div>
       <Box mt="5">{livesArray}</Box>{" "}
-    </div>
+    </Box>
   )
 }
 //68,250 avg
